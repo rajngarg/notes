@@ -1,5 +1,3 @@
-# Programming Notes
-
 ## JavaScript (JS)
 
 ### Primitive Types
