@@ -22,3 +22,11 @@
 - `git remote set-url origin <new-url>` – Change origin
 - `git remote remove origin` – Remove origin
 - `git push -u origin main` – Set upstream
+
+### Rebase Operations
+- `git rebase <branch>` – Rebase current branch onto another branch
+- `git rebase -i HEAD~<n>` – Interactive rebase of last n commits
+- `git rebase --continue` – Continue rebase after resolving conflicts
+- `git rebase --abort` – Abort rebase and return to original state
+- `git rebase --skip` – Skip current patch and continue rebasing
+- `git pull --rebase` – Pull changes and rebase instead of merging

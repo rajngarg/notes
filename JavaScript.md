@@ -21,47 +21,73 @@ myVar = myVar.toUpperCase();
 
 ### Non-Primitive Types
 Complex, mutable data types:
-- object
+- object (key-value pairs with string and symbol keys)
 - array
 - set (same as array with unique values)
-- map (same as object with unique keys of any type)
-
-### Variable Declarations
-- `let` – Block-scoped, can be reassigned
-- `const` – Block-scoped, cannot be reassigned
-- `var` – Function-scoped, gets hoisted (avoid using as it causes global pollution)
-
-### Functions
-#### Arrow vs Regular Functions
-- Arrow functions `()=>{}` are concise, lightweight and do not bind their own `this`, `arguments`, or `super`
-- Regular functions use their own `this` depending on how they're called
+- map (same as object with unique keys of any type, Faster than object, Maintains insertion order, Directly iterable)
 
 ### Scoping
 - Lexical: Scope defined by where variables/functions are written
 - Block: Variables declared inside `{}` using `let` or `const` are not accessible outside
 - Function: `var` is only accessible within the function it's declared in
 
-### JavaScript Concepts
-#### Hoisting
+### Variable Declarations
+- `let` – Block-scoped, can be reassigned, Causes TDZ.
+- `const` – Block-scoped, cannot be reassigned, Causes TDZ.
+- `var` – Function-scoped, gets hoisted (avoid using as it causes global pollution)
+
+```function testVar() {
+  const a = 10;
+  if (true) {
+    var x = 10;
+    let y = 20;
+    const z = 30;
+    console.log(z); // ✅ 30 — accessible
+  }
+  console.log(x); // ✅ 10 — accessible outside the block
+  console.log(y); // ❌ ReferenceError: y is not defined
+  console.log(z); // ❌ ReferenceError: z is not defined
+  console.log(a); // ✅ 10 — accessible
+}
+```
+
+### Arrow vs Regular Functions
+- Arrow functions `()=>{}` are concise, lightweight and do not bind their own `this`, `arguments`, or `super`
+- Regular functions use their own `this` depending on how they're called
+```
+const obj = {
+  name: "Rajan",
+  arrowFn: () => {
+    console.log(this.name); // ❌ undefined
+  },
+  regularFn: function () {
+    console.log(this.name); // ✅ "Rajan"
+  }
+};
+
+obj.arrowFn();
+obj.regularFn();
+```
+
+### Hoisting
 Assignment of memory to declarations (not initializations) before code execution.
 Applicable to `var`, functions, and classes (in limited ways).
 
-#### Execution Context
+### Execution Context
 The environment where memory is assigned to variables and function references are stored and code to be executed.
 
-#### Call Stack
+### Call Stack
 - Stack where function calls are pushed and popped in order for execution
 - When function calls exceed call stack space, maximum depth error will be thrown
 
-#### Event Loop
-The event loop manages the process of offloading async tasks from the call stack to browser or Node.js APIs, and later retrieves the results, placing the associated callbacks into the callback queue (or priority queue) for execution once the call stack is clear.
+### Event Loop
+The event loop manages the process of offloading async tasks from the call stack to browser or Node.js APIs, and later retrieves the results, placing the associated callbacks into the callback queue (or priority queue for prmomises) for execution once the call stack is clear.
 
-#### Queue Types
+### Queue Types
 - Callback queue holds `setTimeout`, `setInterval` callbacks
-- Microtasks (e.g., `Promise.then`) go into a higher-priority queue
+- Microtasks (e.g., `Promise.then`) goes to priority queue
 
-### Advanced Concepts
-#### Currying
+### Currying
 Breaking a function with multiple arguments into a series of unary functions:
 ```javascript
 function multiply(a) {
@@ -73,18 +99,24 @@ const double = multiply(2);
 console.log(double(5));  // 10
 ```
 
-#### Object Methods
+### Object Methods
 - `Object.create` – Creates a new object using another as a prototype
 - `Object.assign` – Copies properties from one or more objects
 - `Object.freeze` – Makes an object immutable
-- `Object.seal` – Prevents deleting and creating keys
+- `Object.seal` – Prevents deleting and creating keys but values can be modified
 
-#### Object Copying
+### Object Copying
 - Assignment: Whole object or array is referenced
 - Shallow copy: Only the first level of the object is copied; deeper levels are referenced
 - Deep copy: All levels of the object are copied (true copy)
+```javascript
+const original = { name: "Tony" };
+const copy = original;
+const shallow = Object.assign({}, original);
+const deep = structuredClone(original);
+```
 
-#### Prototypes
+### Prototypes
 They allow shared behavior (methods or properties) across all instances of an object without duplicating them in memory.
 
 ```javascript
@@ -125,11 +157,10 @@ sayHello();  // Hey, Alice
 | O(n²) | Quadratic time | Nested loop |
 | O(log n) | Logarithmic time | Binary search |
 
-### Asynchronous Programming
-#### Promises
+### Promises
 A Promise is a JavaScript object that represents the eventual completion (or failure) of an async operation and returns its resulting value.
 
-#### Closures
+### Closures
 Functions with their lexical environment are closures:
 ```javascript
 function outer() {
