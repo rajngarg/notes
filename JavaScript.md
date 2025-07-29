@@ -149,14 +149,6 @@ const sayHello = greet.bind(person, "Hey");
 sayHello();  // Hey, Alice
 ```
 
-### Code Complexity
-| Big O | Meaning | Example |
-|-------|---------|----------|
-| O(1) | Constant time | Just one print or lookup |
-| O(n) | Linear time | One loop over array |
-| O(n²) | Quadratic time | Nested loop |
-| O(log n) | Logarithmic time | Binary search |
-
 ### Promises
 A Promise is a JavaScript object that represents the eventual completion (or failure) of an async operation and returns its resulting value.
 

@@ -1,9 +1,10 @@
 # Notes
 
-This repository contains my personal notes on various programming topics:
+## Table of Contents
 
 - [JavaScript](JavaScript.md)
 - [TypeScript](TypeScript.md)
+- [DSA](DSA.md)
 - [React](React.md)
 - [React Native](ReactNative.md)
 - [React Native Bridging](Bridging.md)
